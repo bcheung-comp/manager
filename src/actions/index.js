@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { NavigationActions } from 'react-navigation';
 import { 
   EMAIL_CHANGED, 
   PASSWORD_CHANGED, 
@@ -44,6 +45,11 @@ const loginUserSuccess = (dispatch, user) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
+  dispatch(NavigationActions.navigate(
+    {
+      routeName: 'employeeList',
+    })
+  );
 };
 
 const loginUserFailed = dispatch => {
