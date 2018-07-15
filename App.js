@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import firebase from 'firebase';
-import { Root, configureStore } from './src/navigators/AppNavigator';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import reducers from './src/reducers';
+import AppNavigator from './src/navigators/AppNavigator';
+import NavigationService from './src/navigators/NavigationService';
 
-class App extends Component {
-  componentWillMount() {
-    // Initialize Firebase
-    const config = {
-      apiKey: 'AIzaSyAP0dDmyzWRUrg53QwhIgLLpLBHa7_YGas',
-      authDomain: 'manager-comp.firebaseapp.com',
-      databaseURL: 'https://manager-comp.firebaseio.com',
-      projectId: 'manager-comp',
-      storageBucket: '',
-      messagingSenderId: '863357632054'
-    };
-    firebase.initializeApp(config);
-  }
+class App extends Component {  
   render() {
-    const store = configureStore({});
+    const store = createStore(reducers, {}, applyMiddleware(thunkMiddleware));
     return (
       <Provider store={store}>
-        <Root />
+        <AppNavigator 
+          ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+        />
       </Provider>
     );
   }

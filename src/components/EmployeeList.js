@@ -1,17 +1,47 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { FlatList } from 'react-native';
+import { Button } from 'react-native-elements';
+import { employeesFetch } from '../actions';
+import ListItem from './ListItem';
+import NavigationService from '../navigators/NavigationService';
 
 class EmployeeList extends Component {
+  static navigationOptions = () => {
+    return {
+      headerTitle: 'Employees',
+      headerRight: <Button 
+        title="Add" 
+        onPress={() => NavigationService.navigate('employeeCreate')} 
+      />
+    };
+  };
+
+  componentWillMount() {
+    this.props.employeesFetch();
+  }
+
+  renderItem(employee) {
+    return <ListItem employee={employee} />;
+  }
+
   render() {
     return (
-      <View>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-      </View>
+          <FlatList
+            data={this.props.employees}
+            renderItem={this.renderItem}
+            keyExtractor={employee => employee.uid}
+          />
     );
   }
 }
-export default EmployeeList;
+
+const mapStateToProps = state => {
+  const employees = _.map(state.employees, (val, uid) => {
+    return { ...val, uid };
+  });
+  return { employees };
+};
+
+export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
