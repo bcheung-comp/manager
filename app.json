@@ -1,4 +1,9 @@
 {
   "name": "manager",
-  "displayName": "manager"
+  "displayName": "manager",
+  "expo": {
+    "name": "manager",
+    "slug": "manager-comp",
+    "sdkVersion": "28.0.0"
+  }
 }
