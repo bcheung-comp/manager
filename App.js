@@ -6,15 +6,15 @@ import reducers from './src/reducers';
 import AppNavigator from './src/navigators/AppNavigator';
 import NavigationService from './src/navigators/NavigationService';
 
-class App extends Component {  
+class App extends Component {
   render() {
     const store = createStore(reducers, {}, applyMiddleware(thunkMiddleware));
     return (
       <Provider store={store}>
-        <AppNavigator 
+        <AppNavigator
           ref={navigatorRef => {
-          NavigationService.setTopLevelNavigator(navigatorRef);
-        }}
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
         />
       </Provider>
     );

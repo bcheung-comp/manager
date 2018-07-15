@@ -6,7 +6,7 @@ import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class LoginForm extends Component {
   static navigationOptions = {
-    title: 'Please login',
+    title: 'Please login'
   };
 
   onEmailChange(text) {
@@ -26,9 +26,7 @@ class LoginForm extends Component {
     if (this.props.error) {
       return (
         <View style={{ backgroundColor: 'white' }}>
-          <Text style={styles.errorTextStyle}>
-            {this.props.error}
-          </Text>
+          <Text style={styles.errorTextStyle}>{this.props.error}</Text>
         </View>
       );
     }
@@ -38,18 +36,14 @@ class LoginForm extends Component {
     if (this.props.loading) {
       return <Spinner size="large" />;
     }
-    return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-            Login
-          </Button>
-    );
+    return <Button onPress={this.onButtonPress.bind(this)}>Login</Button>;
   }
 
   render() {
     return (
       <Card>
         <CardSection>
-          <Input 
+          <Input
             label="Email"
             placeholder="user@email.com"
             onChangeText={this.onEmailChange.bind(this)}
@@ -57,7 +51,7 @@ class LoginForm extends Component {
           />
         </CardSection>
         <CardSection>
-          <Input 
+          <Input
             secureTextEntry
             label="Password"
             placeholder="password"
@@ -66,9 +60,7 @@ class LoginForm extends Component {
           />
         </CardSection>
         {this.renderError()}
-        <CardSection>
-          {this.renderButton()}
-        </CardSection>
+        <CardSection>{this.renderButton()}</CardSection>
       </Card>
     );
   }
@@ -87,6 +79,11 @@ const mapStateToProps = ({ auth }) => {
   return { email, password, error, loading };
 };
 
-export default connect(mapStateToProps, { 
-  emailChanged, passwordChanged, loginUser
-})(LoginForm);
+export default connect(
+  mapStateToProps,
+  {
+    emailChanged,
+    passwordChanged,
+    loginUser
+  }
+)(LoginForm);

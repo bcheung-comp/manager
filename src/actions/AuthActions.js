@@ -1,10 +1,10 @@
 import firebase from 'firebase';
-import { 
-  EMAIL_CHANGED, 
-  PASSWORD_CHANGED, 
+import {
+  EMAIL_CHANGED,
+  PASSWORD_CHANGED,
   LOGIN_USER,
-  LOGIN_USER_SUCCESS, 
-  LOGIN_USER_FAILED, 
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAILED
 } from './types';
 
 export const emailChanged = text => {

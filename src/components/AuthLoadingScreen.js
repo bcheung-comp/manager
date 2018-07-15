@@ -21,9 +21,9 @@ class AuthLoadingScreen extends Component {
     firebase.initializeApp(config);
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
-    firebase.auth().onAuthStateChanged(user => { 
+    firebase.auth().onAuthStateChanged(user => {
       this.props.navigation.navigate(user ? 'App' : 'Auth');
-     });
+    });
   };
   // Render any loading content that you like here
   render() {

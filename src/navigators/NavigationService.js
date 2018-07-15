@@ -16,9 +16,7 @@ function navigate(routeName, params) {
 }
 
 function goBack(key) {
-  navigator.dispatch(
-    NavigationActions.back({ key })
-  );
+  navigator.dispatch(NavigationActions.back({ key }));
 }
 
 // add other navigation functions that you need and export them

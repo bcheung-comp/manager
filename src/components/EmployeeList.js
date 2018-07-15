@@ -12,14 +12,10 @@ class EmployeeList extends Component {
   static navigationOptions = () => {
     return {
       headerTitle: 'Employees',
-      headerLeft: <Button 
-        title="Add" 
-        onPress={() => NavigationService.navigate('employeeCreate')} 
-      />,
-      headerRight: <Button 
-        title="Logout" 
-        onPress={() => firebase.auth().signOut()} 
-      />
+      headerLeft: (
+        <Button title="Add" onPress={() => NavigationService.navigate('employeeCreate')} />
+      ),
+      headerRight: <Button title="Logout" onPress={() => firebase.auth().signOut()} />
     };
   };
 
@@ -33,11 +29,11 @@ class EmployeeList extends Component {
 
   render() {
     return (
-          <FlatList
-            data={this.props.employees}
-            renderItem={this.renderItem}
-            keyExtractor={employee => employee.uid}
-          />
+      <FlatList
+        data={this.props.employees}
+        renderItem={this.renderItem}
+        keyExtractor={employee => employee.uid}
+      />
     );
   }
 }
@@ -49,4 +45,7 @@ const mapStateToProps = state => {
   return { employees };
 };
 
-export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
+export default connect(
+  mapStateToProps,
+  { employeesFetch }
+)(EmployeeList);

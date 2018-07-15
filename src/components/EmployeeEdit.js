@@ -14,6 +14,12 @@ class EmployeeCreate extends Component {
     });
   }
 
+  componentWillUnmount() {
+    _.each(this.props.navigation.getParam('employee', 'no-employee').item, (value, prop) => {
+      this.props.employeeUpdate({ prop, value: '' });
+    });
+  }
+
   onButtonPress() {
     const { name, phone, shift } = this.props;
     this.props.employeeSave({

@@ -7,15 +7,14 @@ import { CardSection, Input } from './common';
 class EmployeeCreate extends Component {
   renderPickerItems() {
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    return days.map(value => <Picker.Item key={value} label={value} value={value} />
-  );
+    return days.map(value => <Picker.Item key={value} label={value} value={value} />);
   }
 
   render() {
     return (
       <View>
         <CardSection>
-          <Input 
+          <Input
             label="Name"
             placeholder="Jane"
             onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
@@ -23,7 +22,7 @@ class EmployeeCreate extends Component {
           />
         </CardSection>
         <CardSection>
-          <Input 
+          <Input
             label="Phone"
             placeholder="555-555-5555"
             onChangeText={value => this.props.employeeUpdate({ prop: 'phone', value })}
@@ -51,9 +50,12 @@ const styles = {
   }
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { name, phone, shift } = state.employeeForm;
   return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
+export default connect(
+  mapStateToProps,
+  { employeeUpdate, employeeCreate }
+)(EmployeeCreate);

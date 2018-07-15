@@ -5,19 +5,15 @@ import EmployeeCreate from '../components/EmployeeCreate';
 import EmployeeEdit from '../components/EmployeeEdit';
 import AuthLoadingScreen from '../components/AuthLoadingScreen';
 
-const AuthStack = createStackNavigator(
-  { 
-    login: { screen: LoginForm } 
-  }
-);
+const AuthStack = createStackNavigator({
+  login: { screen: LoginForm }
+});
 
-const AppStack = createStackNavigator(
-  { 
-    employeeList: { screen: EmployeeList },
-    employeeCreate: { screen: EmployeeCreate },
-    employeeEdit: { screen: EmployeeEdit }     
-  }
-);
+const AppStack = createStackNavigator({
+  employeeList: { screen: EmployeeList },
+  employeeCreate: { screen: EmployeeCreate },
+  employeeEdit: { screen: EmployeeEdit }
+});
 
 const AppNavigator = createSwitchNavigator(
   {

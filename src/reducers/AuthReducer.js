@@ -1,13 +1,13 @@
-import { 
-  EMAIL_CHANGED, 
+import {
+  EMAIL_CHANGED,
   PASSWORD_CHANGED,
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAILED,
- } from '../actions/types';
+  LOGIN_USER_FAILED
+} from '../actions/types';
 
-const INITIAL_STATE = { 
-  email: '', 
+const INITIAL_STATE = {
+  email: '',
   password: '',
   user: null,
   error: '',

@@ -24,15 +24,17 @@ export const employeeCreate = ({ name, phone, shift }) => {
   return dispatch => {
     dispatch({ type: EMPLOYEE_CREATE });
 
-    firebase.database().ref(`/users/${currentUser.uid}/employees`)
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/employees`)
       .push({ name, phone, shift })
       .then(employeeCreateSuccess(dispatch));
   };
 };
 
-const employeeCreateSuccess = (dispatch) => {
+const employeeCreateSuccess = dispatch => {
   dispatch({
-    type: EMPLOYEE_CREATE_SUCCESS,
+    type: EMPLOYEE_CREATE_SUCCESS
   });
   NavigationService.goBack();
 };
@@ -42,15 +44,17 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
   return dispatch => {
     dispatch({ type: EMPLOYEE_SAVE });
 
-    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/employees/${uid}`)
       .set({ name, phone, shift })
       .then(employeeSaveSuccess(dispatch));
   };
 };
 
-const employeeSaveSuccess = (dispatch) => {
+const employeeSaveSuccess = dispatch => {
   dispatch({
-    type: EMPLOYEE_SAVE_SUCCESS,
+    type: EMPLOYEE_SAVE_SUCCESS
   });
   NavigationService.goBack();
 };
@@ -60,15 +64,17 @@ export const employeeDelete = ({ uid }) => {
   return dispatch => {
     dispatch({ type: EMPLOYEE_DELETE });
 
-    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/employees/${uid}`)
       .remove()
       .then(employeeDeleteSuccess(dispatch));
   };
 };
 
-const employeeDeleteSuccess = (dispatch) => {
+const employeeDeleteSuccess = dispatch => {
   dispatch({
-    type: EMPLOYEE_DELETE_SUCCESS,
+    type: EMPLOYEE_DELETE_SUCCESS
   });
   NavigationService.goBack();
 };
@@ -77,8 +83,10 @@ export const employeesFetch = () => {
   const { currentUser } = firebase.auth();
   return dispatch => {
     dispatch({ type: EMPLOYEES_FETCH });
-    
-    firebase.database().ref(`/users/${currentUser.uid}/employees`)
+
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/employees`)
       .on('value', snapshot => {
         dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
       });
