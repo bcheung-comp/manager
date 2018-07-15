@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
 import { FlatList } from 'react-native';
 import { Button } from 'react-native-elements';
 import { employeesFetch } from '../actions';
@@ -11,9 +12,13 @@ class EmployeeList extends Component {
   static navigationOptions = () => {
     return {
       headerTitle: 'Employees',
-      headerRight: <Button 
+      headerLeft: <Button 
         title="Add" 
         onPress={() => NavigationService.navigate('employeeCreate')} 
+      />,
+      headerRight: <Button 
+        title="Logout" 
+        onPress={() => firebase.auth().signOut()} 
       />
     };
   };

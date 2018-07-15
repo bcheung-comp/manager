@@ -6,6 +6,8 @@ import {
   EMPLOYEE_CREATE_SUCCESS,
   EMPLOYEE_SAVE,
   EMPLOYEE_SAVE_SUCCESS,
+  EMPLOYEE_DELETE,
+  EMPLOYEE_DELETE_SUCCESS,
   EMPLOYEES_FETCH,
   EMPLOYEES_FETCH_SUCCESS
 } from './types';
@@ -49,6 +51,24 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
 const employeeSaveSuccess = (dispatch) => {
   dispatch({
     type: EMPLOYEE_SAVE_SUCCESS,
+  });
+  NavigationService.goBack();
+};
+
+export const employeeDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth();
+  return dispatch => {
+    dispatch({ type: EMPLOYEE_DELETE });
+
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .remove()
+      .then(employeeDeleteSuccess(dispatch));
+  };
+};
+
+const employeeDeleteSuccess = (dispatch) => {
+  dispatch({
+    type: EMPLOYEE_DELETE_SUCCESS,
   });
   NavigationService.goBack();
 };
