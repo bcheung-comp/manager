@@ -60,3 +60,6 @@ buck-out/
 
 # expo
 .expo/*
+
+# firebase
+src/FirebaseConfig.js
