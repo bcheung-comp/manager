@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from 'firebase';
 import { Spinner } from './common/Spinner';
+import { FIREBASE_CONFIG } from '../FirebaseConfig';
 
 class AuthLoadingScreen extends Component {
   constructor(props) {
@@ -10,15 +11,7 @@ class AuthLoadingScreen extends Component {
   }
   initializeFirebase = async () => {
     // Initialize Firebase
-    const config = {
-      apiKey: 'AIzaSyAP0dDmyzWRUrg53QwhIgLLpLBHa7_YGas',
-      authDomain: 'manager-comp.firebaseapp.com',
-      databaseURL: 'https://manager-comp.firebaseio.com',
-      projectId: 'manager-comp',
-      storageBucket: '',
-      messagingSenderId: '863357632054'
-    };
-    firebase.initializeApp(config);
+    firebase.initializeApp(FIREBASE_CONFIG);
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     firebase.auth().onAuthStateChanged(user => {
