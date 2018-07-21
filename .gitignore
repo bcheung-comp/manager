@@ -58,8 +58,9 @@ buck-out/
 # VS Code
 .vscode/
 
+# firebase
+src/FirebaseConfig.js
+
 # expo
 .expo/*
 
-# firebase
-src/FirebaseConfig.js
